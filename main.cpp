@@ -6,11 +6,10 @@ using namespace mylog;
 int main()
 {
 
-    mylog::Logger::ptr logger(new Logger);
-    logger->addAppender(Appender::ptr(new ConsoleAppender));
+    mylog::Logger::ptr logger(new mylog::Logger);
+    logger->addAppender(mylog::Appender::ptr(new mylog::ConsoleAppender));
 
-    LogEvent::ptr event(new LogEvent(__FILE__, __LINE__, pthread_self(), 0, 0));
-
-    logger->log(event, LogLevel::Level::DEBUG);
+    // 使用 LOG 宏记录日志
+    MAKELOG(logger, DEBUG);
     return 0;
 }

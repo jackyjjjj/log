@@ -12,6 +12,13 @@
 
 using namespace std;
 
+#define MAKELOG(logger, level)                                                                     \
+    do                                                                                             \
+    {                                                                                              \
+        mylog::LogEvent::ptr event(new mylog::LogEvent(__FILE__, __LINE__, pthread_self(), 0, 0)); \
+        (logger)->log(event, mylog::LogLevel::Level::level);                                       \
+    } while (0)
+
 namespace mylog
 {
     class Logger;
